@@ -2,7 +2,7 @@ import {defineField} from 'sanity'
 
 export const announcementType = defineField({
   name: 'announcement',
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({name: 'title', type: 'string'}),
     defineField({name: 'description', type: 'string'}),
