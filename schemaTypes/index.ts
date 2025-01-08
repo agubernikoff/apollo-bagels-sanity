@@ -41,6 +41,8 @@ import {shopifyProductType} from './objects/shopify/shopifyProductType'
 import {shopifyProductVariantType} from './objects/shopify/shopifyProductVariantType'
 import {spotType} from './objects/hotspot/spotType'
 import { announcementType } from './newTypes/announcementType'
+import storeHoursType from './singletons/storeHoursType'
+import {durationType} from './newTypes/duration/durationType'
 
 // Objects used as annotations must be imported first
 const annotations = [linkEmailType, linkExternalType, linkInternalType, linkProductType]
@@ -59,6 +61,7 @@ const objects = [
   customProductOptionColorType,
   customProductOptionSizeObjectType,
   customProductOptionSizeType,
+  durationType,
   footerType,
   gridItemType,
   gridType,
@@ -103,6 +106,6 @@ const documents = [collectionType, colorThemeType, pageType, productType, produc
 import {homeType} from './singletons/homeType'
 import {settingsType} from './singletons/settingsType'
 
-const singletons = [homeType, settingsType]
+const singletons = [homeType, settingsType,storeHoursType]
 
 export const schemaTypes = [...annotations, ...objects, ...singletons, ...blocks, ...documents]
