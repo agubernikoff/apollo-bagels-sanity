@@ -43,6 +43,8 @@ import {spotType} from './objects/hotspot/spotType'
 import { announcementType } from './newTypes/announcementType'
 import storeHoursType from './singletons/storeHoursType'
 import {durationType} from './newTypes/duration/durationType'
+import {locationType} from './newTypes/locationType'
+import {addressType} from './newTypes/addressType'
 
 // Objects used as annotations must be imported first
 const annotations = [linkEmailType, linkExternalType, linkInternalType, linkProductType]
@@ -50,6 +52,7 @@ const annotations = [linkEmailType, linkExternalType, linkInternalType, linkProd
 const objects = [
   accordionGroupType,
   accordionType,
+  addressType,
   announcementType,
   calloutType,
   callToActionType,
@@ -72,6 +75,7 @@ const objects = [
   imageWithProductHotspotsType,
   instagramType,
   inventoryType,
+  locationType,
   menuLinksType,
   menuType,
   notFoundPageType,
