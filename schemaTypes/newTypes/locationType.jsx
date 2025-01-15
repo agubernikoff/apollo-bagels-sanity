@@ -21,5 +21,6 @@ export const locationType = defineField({
     defineField({name: 'orderLink', type: 'url'}),
     defineField({name: 'cateringLink', type: 'url'}),
     defineField({name: 'videoBackground', type: 'file'}),
+    defineField({name: 'comingSoon', type: 'boolean'}),
   ],
 })
