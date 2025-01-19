@@ -8,6 +8,7 @@ import settings from './settingStructure'
 import storeHours from './storeHoursStructure'
 import info from './infoStructure'
 import location from './locationStructure'
+import menu from './menuStructure'
 
 /**
  * Structure overrides
@@ -41,7 +42,8 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
     'settings',
     'storeHours',
     'info',
-    'location'
+    'location',
+    'menuPage'
   ].includes(id)
 }
 
@@ -65,6 +67,8 @@ export const structure: StructureResolver = (S, context) =>
       storeHours(S, context),
       S.divider(),
       location(S, context),
+      S.divider(),
+      menu(S, context),
       S.divider(),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])

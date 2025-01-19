@@ -45,6 +45,8 @@ import storeHoursType from './singletons/storeHoursType'
 import {durationType} from './newTypes/duration/durationType'
 import {locationType} from './newTypes/locationType'
 import {addressType} from './newTypes/addressType'
+import {menuItemType} from './newTypes/menuItemType'
+import bagelsType from './newTypes/baglesType'
 
 // Objects used as annotations must be imported first
 const annotations = [linkEmailType, linkExternalType, linkInternalType, linkProductType]
@@ -54,6 +56,7 @@ const objects = [
   accordionType,
   addressType,
   announcementType,
+  bagelsType,
   calloutType,
   callToActionType,
   collectionGroupType,
@@ -77,6 +80,7 @@ const objects = [
   inventoryType,
   locationType,
   menuLinksType,
+  menuItemType,
   menuType,
   notFoundPageType,
   optionType,
@@ -110,7 +114,9 @@ const documents = [collectionType, colorThemeType, pageType, productType, produc
 import {homeType} from './singletons/homeType'
 import {settingsType} from './singletons/settingsType'
 import infoType from './singletons/infoType'
+import menu from './singletons/menuType'
+import baglesType from './newTypes/baglesType'
 
-const singletons = [homeType, settingsType,storeHoursType,infoType]
+const singletons = [homeType, settingsType,storeHoursType,infoType,menu]
 
 export const schemaTypes = [...annotations, ...objects, ...singletons, ...blocks, ...documents]
