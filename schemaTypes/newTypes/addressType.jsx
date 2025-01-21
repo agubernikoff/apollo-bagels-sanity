@@ -8,13 +8,11 @@ export const addressType = defineField({
       name: 'street',
       title: 'Street',
       type: 'string',
-      validation: (Rule) => Rule.required().error('Street address is required.'),
     },
     {
       name: 'city',
       title: 'City',
       type: 'string',
-      validation: (Rule) => Rule.required().error('City is required.'),
     },
     {
       name: 'state',
@@ -75,8 +73,6 @@ export const addressType = defineField({
           {title: 'Wyoming', value: 'WY'},
         ],
       },
-      validation: (Rule) =>
-        Rule.required().error('State is required and must be selected from the list.'),
       initialValue: 'NY',
     },
     {
@@ -84,11 +80,9 @@ export const addressType = defineField({
       title: 'Postal Code',
       type: 'string',
       validation: (Rule) =>
-        Rule.required()
-          .regex(/^\d{5}(-\d{4})?$/, {
-            name: 'US postal code',
-          })
-          .error('Postal code must be in the format 12345 or 12345-6789.'),
+        Rule.regex(/^\d{5}(-\d{4})?$/, {
+          name: 'US postal code',
+        }).error('Postal code must be in the format 12345 or 12345-6789.'),
     },
     // {
     //   name: 'country',
