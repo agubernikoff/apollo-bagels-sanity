@@ -9,6 +9,7 @@ export const footerType = defineField({
     collapsible: true,
   },
   fields: [
+    defineField({name:'subscribeImage',type:'image'}),
     defineField({
       name: 'links',
       type: 'array',
