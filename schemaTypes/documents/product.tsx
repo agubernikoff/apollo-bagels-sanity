@@ -10,7 +10,7 @@ export const productType = defineType({
   name: 'product',
   title: 'Product',
   type: 'document',
-  icon: TagIcon,
+  icon: ()=>'👕',
   groups: GROUPS,
   fields: [
     defineField({

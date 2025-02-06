@@ -7,7 +7,7 @@ export const homeType = defineField({
   name: 'home',
   title: TITLE,
   type: 'document',
-  icon: HomeIcon,
+  icon: ()=>'🏠',
   fields: [
     defineField({
       name:'leftSideImages',

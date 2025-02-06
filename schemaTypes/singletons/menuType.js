@@ -5,7 +5,7 @@ export default {
   name: 'menuPage',
   title: 'Menu',
   type: 'document',
-  icon: UlistIcon,
+  icon: () => '📋',
   fields: [
     defineField({name: 'defaultImage', type: 'image'}),
     defineField({

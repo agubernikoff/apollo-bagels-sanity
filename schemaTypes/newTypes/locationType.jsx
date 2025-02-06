@@ -4,7 +4,7 @@ import {PinIcon} from '@sanity/icons'
 export const locationType = defineField({
   name: 'location',
   type: 'document',
-  icon: PinIcon,
+  icon: () => '📍',
   fields: [
     defineField({
       name: 'title',

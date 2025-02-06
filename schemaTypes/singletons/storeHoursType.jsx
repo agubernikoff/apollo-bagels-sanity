@@ -4,7 +4,7 @@ export default {
   name: 'storeHours',
   title: 'Store Hours',
   type: 'document',
-  icon: ClockIcon,
+  icon: () => '⏰',
   fields: [
     {name: 'monday', type: 'duration'},
     {name: 'tuesday', type: 'duration'},

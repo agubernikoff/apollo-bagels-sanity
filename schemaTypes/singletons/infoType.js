@@ -4,7 +4,7 @@ export default {
   name: 'info',
   title: 'Info',
   type: 'document',
-  icon: InfoOutlineIcon,
+  icon: () => 'ℹ',
   fields: [
     {name: 'backgroundImage', type: 'image'},
     {name: 'text', type: 'portableText'},

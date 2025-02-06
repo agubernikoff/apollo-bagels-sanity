@@ -10,7 +10,7 @@ export const settingsType = defineType({
   name: 'settings',
   title: TITLE,
   type: 'document',
-  icon: CogIcon,
+  icon: ()=>'⚙',
   groups: [
     {
       default: true,
