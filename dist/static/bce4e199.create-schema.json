@@ -915,7 +915,8 @@
             "type": "collection"
           }
         ],
-        "type": "collection",
+        "type": "reference",
+        "name": "collection",
         "title": "Reference to collection"
       }
     ],
