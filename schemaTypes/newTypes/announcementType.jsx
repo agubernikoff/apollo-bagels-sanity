@@ -5,7 +5,7 @@ export const announcementType = defineField({
   type: 'object',
   fields: [
     defineField({name: 'title', type: 'string'}),
-    defineField({name: 'description', type: 'string'}),
+    defineField({name: 'description', type: 'portableTextSimple'}),
     defineField({name: 'date', type: 'date', options: {dateFormat: 'MM/DD/YYYY'}}),
   ],
 })
