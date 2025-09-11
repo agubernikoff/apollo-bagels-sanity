@@ -1,6 +1,7 @@
 import {InfoOutlineIcon} from '@sanity/icons'
+import {defineField} from 'sanity'
 
-export default {
+export const infoType = defineField({
   name: 'info',
   title: 'Info',
   type: 'document',
@@ -9,4 +10,4 @@ export default {
     {name: 'backgroundImage', type: 'image'},
     {name: 'text', type: 'portableText'},
   ],
-}
+})

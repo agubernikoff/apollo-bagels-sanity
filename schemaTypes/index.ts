@@ -113,7 +113,7 @@ const documents = [collectionType, colorThemeType, pageType, productType, produc
 
 import {homeType} from './singletons/homeType'
 import {settingsType} from './singletons/settingsType'
-import infoType from './singletons/infoType'
+import {infoType} from './singletons/infoType'
 import menu from './singletons/menuType'
 import baglesType from './newTypes/baglesType'
 
