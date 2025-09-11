@@ -15,7 +15,7 @@ const devOnlyPlugins = [visionTool()]
 
 export default defineConfig({
   name: 'default',
-  title: 'Shopify - 6e4049-eb',
+  title: 'Apollo Bagels',
 
   projectId: 'gnnsqgu6',
   dataset: 'production',
