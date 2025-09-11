@@ -14,4 +14,11 @@ export default {
     {name: 'saturday', type: 'duration'},
     {name: 'sunday', type: 'duration'},
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Store Hours',
+      }
+    },
+  },
 }

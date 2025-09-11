@@ -10,4 +10,11 @@ export const infoType = defineField({
     {name: 'backgroundImage', type: 'image'},
     {name: 'text', type: 'portableText'},
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Info',
+      }
+    },
+  },
 })
