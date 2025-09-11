@@ -1,0 +1,3376 @@
+[
+  {
+    "fields": [
+      {
+        "name": "h",
+        "type": "number",
+        "title": "Hue"
+      },
+      {
+        "name": "s",
+        "type": "number",
+        "title": "Saturation"
+      },
+      {
+        "name": "l",
+        "type": "number",
+        "title": "Lightness"
+      },
+      {
+        "name": "a",
+        "type": "number",
+        "title": "Alpha"
+      }
+    ],
+    "name": "hslaColor",
+    "type": "object",
+    "title": "Hue Saturation Lightness"
+  },
+  {
+    "fields": [
+      {
+        "name": "h",
+        "type": "number",
+        "title": "Hue"
+      },
+      {
+        "name": "s",
+        "type": "number",
+        "title": "Saturation"
+      },
+      {
+        "name": "v",
+        "type": "number",
+        "title": "Value"
+      },
+      {
+        "name": "a",
+        "type": "number",
+        "title": "Alpha"
+      }
+    ],
+    "name": "hsvaColor",
+    "type": "object",
+    "title": "Hue Saturation Value"
+  },
+  {
+    "fields": [
+      {
+        "name": "r",
+        "type": "number",
+        "title": "Red"
+      },
+      {
+        "name": "g",
+        "type": "number",
+        "title": "Green"
+      },
+      {
+        "name": "b",
+        "type": "number",
+        "title": "Blue"
+      },
+      {
+        "name": "a",
+        "type": "number",
+        "title": "Alpha"
+      }
+    ],
+    "name": "rgbaColor",
+    "type": "object",
+    "title": "Red Green Blue (rgb)"
+  },
+  {
+    "fields": [
+      {
+        "name": "hex",
+        "type": "string"
+      },
+      {
+        "name": "alpha",
+        "type": "number"
+      },
+      {
+        "name": "hsl",
+        "type": "hslaColor",
+        "title": "Hue Saturation Lightness"
+      },
+      {
+        "name": "hsv",
+        "type": "hsvaColor",
+        "title": "Hue Saturation Value"
+      },
+      {
+        "name": "rgb",
+        "type": "rgbaColor",
+        "title": "Red Green Blue (rgb)"
+      }
+    ],
+    "name": "color",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "slug"
+      }
+    ],
+    "name": "media.tag",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "email",
+        "type": "email"
+      }
+    ],
+    "name": "linkEmail",
+    "type": "object",
+    "title": "Email link"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "url",
+        "title": "URL"
+      },
+      {
+        "initialValue": true,
+        "name": "newWindow",
+        "type": "boolean",
+        "title": "Open in a new window?"
+      }
+    ],
+    "name": "linkExternal",
+    "type": "object",
+    "title": "External Link"
+  },
+  {
+    "fields": [
+      {
+        "weak": true,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "collection"
+          },
+          {
+            "type": "home"
+          },
+          {
+            "type": "page"
+          },
+          {
+            "type": "product"
+          }
+        ],
+        "name": "reference",
+        "type": "reference"
+      }
+    ],
+    "name": "linkInternal",
+    "type": "object",
+    "title": "Internal Link"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "productWithVariant",
+        "type": "productWithVariant"
+      },
+      {
+        "initialValue": "link",
+        "options": {
+          "layout": "radio",
+          "list": [
+            {
+              "title": "Navigate to product",
+              "value": "link"
+            },
+            {
+              "title": "Add to cart",
+              "value": "addToCart"
+            },
+            {
+              "title": "Buy now",
+              "value": "buyNow"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "link",
+                  "addToCart",
+                  "buyNow"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkAction",
+        "type": "string"
+      },
+      {
+        "initialValue": 1,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 10
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "quantity",
+        "type": "number"
+      }
+    ],
+    "name": "linkProduct",
+    "type": "object",
+    "title": "Product"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "body",
+        "type": "portableTextSimple"
+      }
+    ],
+    "name": "accordionGroup",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "type": "accordionGroup"
+          }
+        ],
+        "name": "groups",
+        "type": "array"
+      }
+    ],
+    "name": "accordion",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "street",
+        "type": "string"
+      },
+      {
+        "name": "city",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Alabama",
+              "value": "AL"
+            },
+            {
+              "title": "Alaska",
+              "value": "AK"
+            },
+            {
+              "title": "Arizona",
+              "value": "AZ"
+            },
+            {
+              "title": "Arkansas",
+              "value": "AR"
+            },
+            {
+              "title": "California",
+              "value": "CA"
+            },
+            {
+              "title": "Colorado",
+              "value": "CO"
+            },
+            {
+              "title": "Connecticut",
+              "value": "CT"
+            },
+            {
+              "title": "Delaware",
+              "value": "DE"
+            },
+            {
+              "title": "District of Columbia",
+              "value": "DC"
+            },
+            {
+              "title": "Florida",
+              "value": "FL"
+            },
+            {
+              "title": "Georgia",
+              "value": "GA"
+            },
+            {
+              "title": "Hawaii",
+              "value": "HI"
+            },
+            {
+              "title": "Idaho",
+              "value": "ID"
+            },
+            {
+              "title": "Illinois",
+              "value": "IL"
+            },
+            {
+              "title": "Indiana",
+              "value": "IN"
+            },
+            {
+              "title": "Iowa",
+              "value": "IA"
+            },
+            {
+              "title": "Kansas",
+              "value": "KS"
+            },
+            {
+              "title": "Kentucky",
+              "value": "KY"
+            },
+            {
+              "title": "Louisiana",
+              "value": "LA"
+            },
+            {
+              "title": "Maine",
+              "value": "ME"
+            },
+            {
+              "title": "Maryland",
+              "value": "MD"
+            },
+            {
+              "title": "Massachusetts",
+              "value": "MA"
+            },
+            {
+              "title": "Michigan",
+              "value": "MI"
+            },
+            {
+              "title": "Minnesota",
+              "value": "MN"
+            },
+            {
+              "title": "Mississippi",
+              "value": "MS"
+            },
+            {
+              "title": "Missouri",
+              "value": "MO"
+            },
+            {
+              "title": "Montana",
+              "value": "MT"
+            },
+            {
+              "title": "Nebraska",
+              "value": "NE"
+            },
+            {
+              "title": "Nevada",
+              "value": "NV"
+            },
+            {
+              "title": "New Hampshire",
+              "value": "NH"
+            },
+            {
+              "title": "New Jersey",
+              "value": "NJ"
+            },
+            {
+              "title": "New Mexico",
+              "value": "NM"
+            },
+            {
+              "title": "New York",
+              "value": "NY"
+            },
+            {
+              "title": "North Carolina",
+              "value": "NC"
+            },
+            {
+              "title": "North Dakota",
+              "value": "ND"
+            },
+            {
+              "title": "Ohio",
+              "value": "OH"
+            },
+            {
+              "title": "Oklahoma",
+              "value": "OK"
+            },
+            {
+              "title": "Oregon",
+              "value": "OR"
+            },
+            {
+              "title": "Pennsylvania",
+              "value": "PA"
+            },
+            {
+              "title": "Rhode Island",
+              "value": "RI"
+            },
+            {
+              "title": "South Carolina",
+              "value": "SC"
+            },
+            {
+              "title": "South Dakota",
+              "value": "SD"
+            },
+            {
+              "title": "Tennessee",
+              "value": "TN"
+            },
+            {
+              "title": "Texas",
+              "value": "TX"
+            },
+            {
+              "title": "Utah",
+              "value": "UT"
+            },
+            {
+              "title": "Vermont",
+              "value": "VT"
+            },
+            {
+              "title": "Virginia",
+              "value": "VA"
+            },
+            {
+              "title": "Washington",
+              "value": "WA"
+            },
+            {
+              "title": "West Virginia",
+              "value": "WV"
+            },
+            {
+              "title": "Wisconsin",
+              "value": "WI"
+            },
+            {
+              "title": "Wyoming",
+              "value": "WY"
+            }
+          ]
+        },
+        "initialValue": "NY",
+        "name": "state",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "regex",
+                "constraint": {
+                  "pattern": "/^\\d{5}(-\\d{4})?$/",
+                  "name": "US postal code",
+                  "invert": false
+                }
+              }
+            ],
+            "level": "error",
+            "message": "Postal code must be in the format 12345 or 12345-6789."
+          }
+        ],
+        "name": "postalCode",
+        "type": "string"
+      }
+    ],
+    "name": "address",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "options": {
+          "dateFormat": "MM/DD/YYYY"
+        },
+        "name": "date",
+        "type": "date"
+      }
+    ],
+    "name": "announcement",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "type": "menuItem"
+          }
+        ],
+        "name": "flavors",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "menuItem"
+          }
+        ],
+        "name": "quantities",
+        "type": "array"
+      }
+    ],
+    "name": "bagels",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          },
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "warning",
+            "message": "Callout length shouldn't be more than 70 characters."
+          }
+        ],
+        "name": "text",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "linkInternal",
+            "title": "Internal Link"
+          },
+          {
+            "type": "linkExternal",
+            "title": "External Link"
+          }
+        ],
+        "name": "link",
+        "type": "array"
+      }
+    ],
+    "name": "callout",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "left",
+        "options": {
+          "direction": "horizontal",
+          "layout": "radio",
+          "list": [
+            {
+              "title": "Content / Copy",
+              "value": "left"
+            },
+            {
+              "title": "Copy / Content",
+              "value": "right"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "left",
+                  "right"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "layout",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "fieldset": "copy"
+      },
+      {
+        "rows": 2,
+        "name": "portableText",
+        "type": "text",
+        "fieldset": "copy"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "linkInternal",
+            "title": "Internal Link"
+          },
+          {
+            "type": "linkExternal",
+            "title": "External Link"
+          }
+        ],
+        "name": "link",
+        "type": "array",
+        "fieldset": "copy"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "type": "productWithVariant",
+            "title": "Product with variant"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      }
+    ],
+    "fieldsets": [
+      {
+        "name": "copy"
+      }
+    ],
+    "name": "callToAction",
+    "type": "object",
+    "title": "Call to action"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "collectionLinks",
+        "type": "collectionLinks"
+      },
+      {
+        "weak": true,
+        "description": "Products from this collection will be listed",
+        "to": [
+          {
+            "type": "collection"
+          }
+        ],
+        "name": "collectionProducts",
+        "type": "reference"
+      }
+    ],
+    "name": "collectionGroup",
+    "type": "object",
+    "title": "Collection group"
+  },
+  {
+    "validation": [
+      {
+        "rules": [
+          {
+            "flag": "max",
+            "constraint": 4
+          }
+        ],
+        "level": "error"
+      }
+    ],
+    "of": [
+      {
+        "weak": true,
+        "to": [
+          {
+            "type": "collection"
+          }
+        ],
+        "type": "collection",
+        "title": "Reference to collection"
+      }
+    ],
+    "name": "collectionLinks",
+    "type": "array",
+    "title": "Collection links"
+  },
+  {
+    "fields": [
+      {
+        "weak": true,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "collection"
+          }
+        ],
+        "name": "collection",
+        "type": "reference"
+      },
+      {
+        "initialValue": false,
+        "description": "Use Shopify collection image as background (if available)",
+        "name": "showBackground",
+        "type": "boolean"
+      }
+    ],
+    "name": "collectionReference",
+    "type": "object",
+    "title": "Collection"
+  },
+  {
+    "fields": [
+      {
+        "name": "column",
+        "type": "string"
+      },
+      {
+        "name": "relation",
+        "type": "string"
+      },
+      {
+        "name": "condition",
+        "type": "string"
+      }
+    ],
+    "readOnly": true,
+    "name": "collectionRule",
+    "type": "object",
+    "title": "Collection rule"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Shopify product option value (case sensitive)",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "disableAlpha": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "color",
+        "type": "color"
+      }
+    ],
+    "name": "customProductOption.colorObject",
+    "type": "object",
+    "title": "Color"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Shopify product option name (case sensitive)",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "customProductOption.colorObject",
+            "title": "Color"
+          }
+        ],
+        "name": "colors",
+        "type": "array"
+      }
+    ],
+    "name": "customProductOption.color",
+    "type": "object",
+    "title": "Color"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Shopify product option value (case sensitive)",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "precision",
+                "constraint": 2
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "In mm",
+        "name": "width",
+        "type": "number"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "precision",
+                "constraint": 2
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "In mm",
+        "name": "height",
+        "type": "number"
+      }
+    ],
+    "name": "customProductOption.sizeObject",
+    "type": "object",
+    "title": "Size"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Shopify product option name (case sensitive)",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "customProductOption.sizeObject",
+            "title": "Size"
+          }
+        ],
+        "name": "sizes",
+        "type": "array"
+      }
+    ],
+    "name": "customProductOption.size",
+    "type": "object",
+    "title": "Size"
+  },
+  {
+    "options": {
+      "columns": 2,
+      "defaultStart": "07:00",
+      "defaultEnd": "17:00"
+    },
+    "fields": [
+      {
+        "name": "start",
+        "type": "string",
+        "title": "Opening Time"
+      },
+      {
+        "name": "end",
+        "type": "string",
+        "title": "Closing Time"
+      }
+    ],
+    "name": "duration",
+    "type": "object"
+  },
+  {
+    "options": {
+      "collapsed": false,
+      "collapsible": true
+    },
+    "fields": [
+      {
+        "name": "subscribeImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "type": "linkInternal",
+            "title": "Internal Link"
+          },
+          {
+            "type": "linkExternal",
+            "title": "External Link"
+          }
+        ],
+        "name": "links",
+        "type": "array"
+      },
+      {
+        "name": "text",
+        "type": "portableTextSimple"
+      }
+    ],
+    "name": "footerSettings",
+    "type": "object",
+    "title": "Footer"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "body",
+        "type": "portableTextSimple"
+      }
+    ],
+    "name": "gridItem",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "type": "gridItem"
+          }
+        ],
+        "name": "items",
+        "type": "array"
+      }
+    ],
+    "name": "grid",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "rows": 3,
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "linkInternal",
+            "title": "Internal Link"
+          },
+          {
+            "type": "linkExternal",
+            "title": "External Link"
+          }
+        ],
+        "name": "link",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "productWithVariant",
+            "title": "Product with variant"
+          },
+          {
+            "type": "imageWithProductHotspots",
+            "title": "Image"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      }
+    ],
+    "name": "hero",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "linkInternal",
+            "title": "Internal Link"
+          },
+          {
+            "type": "linkExternal",
+            "title": "External Link"
+          }
+        ],
+        "name": "link",
+        "type": "array"
+      }
+    ],
+    "name": "imageCallToAction",
+    "type": "object",
+    "title": "Call to action"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 2
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "imageFeature"
+          }
+        ],
+        "name": "imageFeatures",
+        "type": "array",
+        "title": "Images"
+      },
+      {
+        "initialValue": false,
+        "description": "Display single image at full width (on larger breakpoints)",
+        "hidden": "conditional",
+        "name": "fullWidth",
+        "type": "boolean"
+      },
+      {
+        "initialValue": "top",
+        "options": {
+          "direction": "horizontal",
+          "layout": "radio",
+          "list": [
+            "top",
+            "center",
+            "bottom"
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "top",
+                  "center",
+                  "bottom"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "verticalAlign",
+        "type": "string",
+        "title": "Vertical alignment"
+      }
+    ],
+    "name": "images",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "options": {
+          "direction": "horizontal",
+          "layout": "radio",
+          "list": [
+            {
+              "title": "Simple"
+            },
+            {
+              "title": "Caption",
+              "value": "caption"
+            },
+            {
+              "title": "Call to action",
+              "value": "callToAction"
+            },
+            {
+              "title": "Product hotspots",
+              "value": "productHotspots"
+            },
+            {
+              "title": "Product tags",
+              "value": "productTags"
+            }
+          ]
+        },
+        "name": "variant",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "hidden": "conditional",
+        "name": "caption",
+        "type": "text"
+      },
+      {
+        "hidden": "conditional",
+        "name": "callToAction",
+        "type": "imageCallToAction"
+      },
+      {
+        "options": {
+          "imageHotspot": {
+            "imagePath": "image",
+            "pathRoot": "parent"
+          }
+        },
+        "hidden": "conditional",
+        "name": "productHotspots",
+        "type": "productHotspots",
+        "title": "Hotspots"
+      },
+      {
+        "of": [
+          {
+            "type": "productWithVariant",
+            "title": "Product with variant"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "productTags",
+        "type": "array",
+        "title": "Products"
+      }
+    ],
+    "name": "imageFeature",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "initialValue": false,
+        "name": "showHotspots",
+        "type": "boolean"
+      },
+      {
+        "options": {
+          "imageHotspot": {
+            "imagePath": "image",
+            "pathRoot": "parent"
+          }
+        },
+        "hidden": "conditional",
+        "name": "productHotspots",
+        "type": "productHotspots"
+      }
+    ],
+    "name": "imageWithProductHotspots",
+    "type": "object",
+    "title": "Image"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "string",
+        "title": "URL"
+      }
+    ],
+    "name": "instagram",
+    "type": "object"
+  },
+  {
+    "options": {
+      "columns": 3
+    },
+    "fields": [
+      {
+        "name": "isAvailable",
+        "type": "boolean",
+        "title": "Available"
+      },
+      {
+        "name": "management",
+        "type": "string"
+      },
+      {
+        "name": "policy",
+        "type": "string"
+      }
+    ],
+    "name": "inventory",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error",
+            "message": "Title is required."
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "regex",
+                "constraint": {
+                  "pattern": "/^\\(\\d{3}\\) \\d{3}-\\d{4}$/",
+                  "name": "phone number",
+                  "invert": false
+                }
+              }
+            ],
+            "level": "error",
+            "message": "Please enter a valid phone number in the format (555) 555-5555."
+          }
+        ],
+        "description": "Enter the phone number in the format (555) 555-5555.",
+        "name": "phoneNumber",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "address",
+        "type": "address"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "orderLink",
+        "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "cateringLink",
+        "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "googleMapsLink",
+        "type": "url"
+      },
+      {
+        "name": "videoBackground",
+        "type": "file"
+      },
+      {
+        "name": "comingSoon",
+        "type": "boolean"
+      }
+    ],
+    "name": "location",
+    "type": "document"
+  },
+  {
+    "of": [
+      {
+        "type": "collectionGroup",
+        "title": "Collection group"
+      },
+      {
+        "type": "linkInternal",
+        "title": "Internal Link"
+      },
+      {
+        "type": "linkExternal",
+        "title": "External Link"
+      }
+    ],
+    "name": "menuLinks",
+    "type": "array"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "price",
+        "type": "number"
+      },
+      {
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "menuItem",
+    "type": "object"
+  },
+  {
+    "options": {
+      "collapsed": false,
+      "collapsible": true
+    },
+    "fields": [
+      {
+        "name": "links",
+        "type": "menuLinks"
+      }
+    ],
+    "name": "menu",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "body",
+        "type": "text"
+      },
+      {
+        "weak": true,
+        "description": "Collection products displayed on this page",
+        "to": [
+          {
+            "type": "collection"
+          }
+        ],
+        "name": "collection",
+        "type": "reference"
+      },
+      {
+        "to": [
+          {
+            "type": "colorTheme"
+          }
+        ],
+        "name": "colorTheme",
+        "type": "reference"
+      }
+    ],
+    "name": "notFoundPage",
+    "type": "object",
+    "title": "404 page"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "values",
+        "type": "array"
+      }
+    ],
+    "readOnly": true,
+    "name": "option",
+    "type": "object",
+    "title": "Product option"
+  },
+  {
+    "name": "placeholderString",
+    "type": "string",
+    "title": "Title"
+  },
+  {
+    "options": {
+      "columns": 2
+    },
+    "fields": [
+      {
+        "name": "minVariantPrice",
+        "type": "number"
+      },
+      {
+        "name": "maxVariantPrice",
+        "type": "number"
+      }
+    ],
+    "name": "priceRange",
+    "type": "object",
+    "title": "Price range"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 2
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "productReference",
+            "title": "Product"
+          }
+        ],
+        "name": "products",
+        "type": "array"
+      },
+      {
+        "initialValue": "card",
+        "options": {
+          "direction": "horizontal",
+          "layout": "radio",
+          "list": [
+            {
+              "title": "Cards (large)",
+              "value": "card"
+            },
+            {
+              "title": "Pills (small)",
+              "value": "pill"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "card",
+                  "pill"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "layout",
+        "type": "string"
+      }
+    ],
+    "name": "products",
+    "type": "object"
+  },
+  {
+    "options": {
+      "imageHotspot": {
+        "imagePath": "image",
+        "pathRoot": "parent"
+      }
+    },
+    "of": [
+      {
+        "fieldsets": [
+          {
+            "name": "position",
+            "options": {
+              "columns": 2
+            }
+          }
+        ],
+        "type": "spot"
+      }
+    ],
+    "name": "productHotspots",
+    "type": "array",
+    "title": "Hotspots"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "productWithVariant",
+        "type": "productWithVariant"
+      }
+    ],
+    "name": "productReference",
+    "type": "object",
+    "title": "Product"
+  },
+  {
+    "fields": [
+      {
+        "weak": true,
+        "to": [
+          {
+            "type": "product"
+          }
+        ],
+        "name": "product",
+        "type": "reference"
+      },
+      {
+        "weak": true,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "First variant will be selected if left empty",
+        "to": [
+          {
+            "type": "productVariant"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "variant",
+        "type": "reference"
+      }
+    ],
+    "name": "productWithVariant",
+    "type": "object",
+    "title": "Product with variant"
+  },
+  {
+    "name": "proxyString",
+    "type": "string",
+    "title": "Title"
+  },
+  {
+    "options": {
+      "collapsed": false,
+      "collapsible": true
+    },
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 50
+              }
+            ],
+            "level": "warning",
+            "message": "Longer titles may be truncated by search engines"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 150
+              }
+            ],
+            "level": "warning",
+            "message": "Longer descriptions may be truncated by search engines"
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "seo",
+    "type": "object",
+    "title": "SEO"
+  },
+  {
+    "options": {
+      "collapsed": false,
+      "collapsible": true
+    },
+    "fields": [
+      {
+        "name": "createdAt",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "name": "updatedAt",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "name": "isDeleted",
+        "type": "boolean",
+        "title": "Deleted from Shopify?",
+        "fieldset": "status"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "Shopify Collection ID",
+        "name": "id",
+        "type": "number",
+        "title": "ID"
+      },
+      {
+        "description": "Shopify Collection GID",
+        "name": "gid",
+        "type": "string",
+        "title": "GID"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Shopify Collection handle",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 5,
+        "name": "descriptionHtml",
+        "type": "text",
+        "title": "HTML Description"
+      },
+      {
+        "name": "imageUrl",
+        "type": "string",
+        "title": "Image URL"
+      },
+      {
+        "description": "Include Shopify products that satisfy these conditions",
+        "of": [
+          {
+            "readOnly": true,
+            "type": "collectionRule",
+            "title": "Collection rule"
+          }
+        ],
+        "name": "rules",
+        "type": "array"
+      },
+      {
+        "description": "Require any condition if true, otherwise require all conditions",
+        "name": "disjunctive",
+        "type": "boolean",
+        "title": "Disjunctive rules?"
+      },
+      {
+        "name": "sortOrder",
+        "type": "string"
+      }
+    ],
+    "readOnly": true,
+    "fieldsets": [
+      {
+        "name": "status"
+      }
+    ],
+    "name": "shopifyCollection",
+    "type": "object",
+    "title": "Shopify"
+  },
+  {
+    "options": {
+      "collapsed": false,
+      "collapsible": true
+    },
+    "fields": [
+      {
+        "name": "createdAt",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "name": "updatedAt",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "options": {
+          "layout": "dropdown",
+          "list": [
+            "active",
+            "archived",
+            "draft"
+          ]
+        },
+        "name": "status",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "name": "isDeleted",
+        "type": "boolean",
+        "title": "Deleted from Shopify?",
+        "fieldset": "status"
+      },
+      {
+        "description": "Title displayed in both cart and checkout",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "Shopify Product ID",
+        "name": "id",
+        "type": "number",
+        "title": "ID"
+      },
+      {
+        "description": "Shopify Product GID",
+        "name": "gid",
+        "type": "string",
+        "title": "GID"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Shopify Product handle",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 5,
+        "name": "descriptionHtml",
+        "type": "text",
+        "title": "HTML Description"
+      },
+      {
+        "name": "productType",
+        "type": "string",
+        "fieldset": "organization"
+      },
+      {
+        "name": "vendor",
+        "type": "string",
+        "fieldset": "organization"
+      },
+      {
+        "name": "tags",
+        "type": "string",
+        "fieldset": "organization"
+      },
+      {
+        "options": {
+          "columns": 2
+        },
+        "name": "priceRange",
+        "type": "priceRange"
+      },
+      {
+        "description": "Image displayed in both cart and checkout",
+        "name": "previewImageUrl",
+        "type": "string",
+        "title": "Preview Image URL"
+      },
+      {
+        "of": [
+          {
+            "readOnly": true,
+            "type": "option",
+            "title": "Product option"
+          }
+        ],
+        "name": "options",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "weak": true,
+            "to": [
+              {
+                "type": "productVariant"
+              }
+            ],
+            "type": "reference",
+            "title": "Variant"
+          }
+        ],
+        "name": "variants",
+        "type": "array",
+        "fieldset": "variants"
+      }
+    ],
+    "readOnly": true,
+    "fieldsets": [
+      {
+        "name": "status"
+      },
+      {
+        "name": "organization",
+        "options": {
+          "columns": 2
+        }
+      },
+      {
+        "name": "variants",
+        "options": {
+          "collapsed": true,
+          "collapsible": true
+        }
+      }
+    ],
+    "name": "shopifyProduct",
+    "type": "object",
+    "title": "Shopify"
+  },
+  {
+    "options": {
+      "collapsed": false,
+      "collapsible": true
+    },
+    "fields": [
+      {
+        "name": "createdAt",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "name": "updatedAt",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "options": {
+          "layout": "dropdown",
+          "list": [
+            "active",
+            "archived",
+            "draft"
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "active",
+                  "archived",
+                  "draft"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "status",
+        "type": "string",
+        "fieldset": "status"
+      },
+      {
+        "name": "isDeleted",
+        "type": "boolean",
+        "title": "Deleted from Shopify?",
+        "fieldset": "status"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "sku",
+        "type": "string",
+        "title": "SKU"
+      },
+      {
+        "description": "Shopify Product Variant ID",
+        "name": "id",
+        "type": "number",
+        "title": "ID"
+      },
+      {
+        "description": "Shopify Product Variant GID",
+        "name": "gid",
+        "type": "string",
+        "title": "GID"
+      },
+      {
+        "name": "productId",
+        "type": "number",
+        "title": "Product ID"
+      },
+      {
+        "name": "productGid",
+        "type": "string",
+        "title": "Product GID"
+      },
+      {
+        "name": "price",
+        "type": "number"
+      },
+      {
+        "name": "compareAtPrice",
+        "type": "number"
+      },
+      {
+        "options": {
+          "columns": 3
+        },
+        "name": "inventory",
+        "type": "inventory"
+      },
+      {
+        "name": "option1",
+        "type": "string",
+        "fieldset": "options"
+      },
+      {
+        "name": "option2",
+        "type": "string",
+        "fieldset": "options"
+      },
+      {
+        "name": "option3",
+        "type": "string",
+        "fieldset": "options"
+      },
+      {
+        "description": "Image displayed in both cart and checkout",
+        "name": "previewImageUrl",
+        "type": "string",
+        "title": "Preview Image URL"
+      }
+    ],
+    "readOnly": true,
+    "fieldsets": [
+      {
+        "name": "status"
+      },
+      {
+        "name": "options",
+        "options": {
+          "columns": 3
+        }
+      }
+    ],
+    "name": "shopifyProductVariant",
+    "type": "object",
+    "title": "Shopify"
+  },
+  {
+    "fields": [
+      {
+        "name": "productWithVariant",
+        "type": "productWithVariant"
+      },
+      {
+        "initialValue": 50,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "x",
+        "type": "number",
+        "fieldset": "position"
+      },
+      {
+        "initialValue": 50,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "y",
+        "type": "number",
+        "fieldset": "position"
+      }
+    ],
+    "fieldsets": [
+      {
+        "name": "position",
+        "options": {
+          "columns": 2
+        }
+      }
+    ],
+    "name": "spot",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "leftSideImages",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "rightSideImages",
+        "type": "array"
+      },
+      {
+        "name": "announcement",
+        "type": "announcement"
+      }
+    ],
+    "name": "home",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "name": "menu",
+        "type": "menu"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "name": "footer",
+        "type": "footerSettings"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "type": "customProductOption.color",
+            "title": "Color"
+          },
+          {
+            "type": "customProductOption.size",
+            "title": "Size"
+          }
+        ],
+        "name": "customProductOptions",
+        "type": "array"
+      },
+      {
+        "name": "notFoundPage",
+        "type": "notFoundPage",
+        "title": "404 page"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "settings",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "monday",
+        "type": "duration"
+      },
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "tuesday",
+        "type": "duration"
+      },
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "wednesday",
+        "type": "duration"
+      },
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "thursday",
+        "type": "duration"
+      },
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "friday",
+        "type": "duration"
+      },
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "saturday",
+        "type": "duration"
+      },
+      {
+        "options": {
+          "columns": 2,
+          "defaultStart": "07:00",
+          "defaultEnd": "17:00"
+        },
+        "name": "sunday",
+        "type": "duration"
+      }
+    ],
+    "name": "storeHours",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "backgroundImage",
+        "type": "image"
+      },
+      {
+        "name": "text",
+        "type": "portableText"
+      }
+    ],
+    "name": "info",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "defaultImage",
+        "type": "image"
+      },
+      {
+        "name": "bagels",
+        "type": "bagels"
+      },
+      {
+        "of": [
+          {
+            "type": "menuItem"
+          }
+        ],
+        "name": "fish",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "menuItem"
+          }
+        ],
+        "name": "spreads",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "menuItem"
+          }
+        ],
+        "name": "sandwiches",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "menuItem"
+          }
+        ],
+        "name": "drinks",
+        "type": "array"
+      }
+    ],
+    "name": "menuPage",
+    "type": "document",
+    "title": "Menu"
+  },
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "name": "linkProduct",
+              "type": "linkProduct",
+              "title": "Product"
+            },
+            {
+              "name": "linkEmail",
+              "type": "linkEmail",
+              "title": "Email link"
+            },
+            {
+              "name": "linkInternal",
+              "type": "linkInternal",
+              "title": "Internal Link"
+            },
+            {
+              "name": "linkExternal",
+              "type": "linkExternal",
+              "title": "External Link"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "em",
+              "title": "Italic"
+            },
+            {
+              "value": "strong",
+              "title": "Strong"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h1",
+            "title": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "title": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "title": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "title": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "title": "Heading 5"
+          },
+          {
+            "value": "h6",
+            "title": "Heading 6"
+          },
+          {
+            "value": "blockquote",
+            "title": "Quote"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "type": "accordion"
+      },
+      {
+        "type": "callout"
+      },
+      {
+        "type": "grid"
+      },
+      {
+        "type": "images"
+      },
+      {
+        "type": "imageWithProductHotspots",
+        "title": "Image with Hotspots"
+      },
+      {
+        "type": "instagram"
+      },
+      {
+        "type": "products"
+      }
+    ],
+    "name": "portableText",
+    "type": "array"
+  },
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "name": "linkProduct",
+              "type": "linkProduct",
+              "title": "Product"
+            },
+            {
+              "name": "linkEmail",
+              "type": "linkEmail",
+              "title": "Email link"
+            },
+            {
+              "name": "linkInternal",
+              "type": "linkInternal",
+              "title": "Internal Link"
+            },
+            {
+              "name": "linkExternal",
+              "type": "linkExternal",
+              "title": "External Link"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "em",
+              "title": "Italic"
+            },
+            {
+              "value": "strong",
+              "title": "Strong"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h1",
+            "title": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "title": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "title": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "title": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "title": "Heading 5"
+          },
+          {
+            "value": "h6",
+            "title": "Heading 6"
+          },
+          {
+            "value": "blockquote",
+            "title": "Quote"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      }
+    ],
+    "name": "portableTextSimple",
+    "type": "array"
+  },
+  {
+    "fields": [
+      {
+        "hidden": "conditional",
+        "name": "hidden",
+        "type": "string"
+      },
+      {
+        "options": {
+          "field": "store.title"
+        },
+        "name": "titleProxy",
+        "type": "proxyString",
+        "title": "Title"
+      },
+      {
+        "options": {
+          "field": "store.slug.current"
+        },
+        "name": "slugProxy",
+        "type": "proxyString",
+        "title": "Slug"
+      },
+      {
+        "to": [
+          {
+            "type": "colorTheme"
+          }
+        ],
+        "name": "colorTheme",
+        "type": "reference"
+      },
+      {
+        "options": {
+          "accept": "image/svg+xml"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Displayed in collection links using color theme",
+        "name": "vector",
+        "type": "image",
+        "title": "Vector artwork"
+      },
+      {
+        "description": "If disabled, page title will be displayed instead",
+        "name": "showHero",
+        "type": "boolean"
+      },
+      {
+        "hidden": "conditional",
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "description": "Editorial modules to associate with this collection",
+        "of": [
+          {
+            "type": "callout"
+          },
+          {
+            "fieldsets": [
+              {
+                "name": "copy"
+              }
+            ],
+            "type": "callToAction",
+            "title": "Call to action"
+          },
+          {
+            "type": "image"
+          },
+          {
+            "type": "instagram"
+          }
+        ],
+        "name": "modules",
+        "type": "array"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "description": "Collection data from Shopify (read-only)",
+        "readOnly": true,
+        "fieldsets": [
+          {
+            "name": "status"
+          }
+        ],
+        "name": "store",
+        "type": "shopifyCollection",
+        "title": "Shopify"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "collection",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "disableAlpha": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "text",
+        "type": "color"
+      },
+      {
+        "options": {
+          "disableAlpha": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "background",
+        "type": "color"
+      }
+    ],
+    "name": "colorTheme",
+    "type": "document",
+    "title": "Color theme"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "to": [
+          {
+            "type": "colorTheme"
+          }
+        ],
+        "name": "colorTheme",
+        "type": "reference"
+      },
+      {
+        "initialValue": false,
+        "description": "If disabled, page title will be displayed instead",
+        "name": "showHero",
+        "type": "boolean"
+      },
+      {
+        "hidden": "conditional",
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "name": "body",
+        "type": "portableText"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "page",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "hidden": "conditional",
+        "name": "hidden",
+        "type": "string"
+      },
+      {
+        "options": {
+          "field": "store.title"
+        },
+        "name": "titleProxy",
+        "type": "proxyString",
+        "title": "Title"
+      },
+      {
+        "options": {
+          "field": "store.slug.current"
+        },
+        "name": "slugProxy",
+        "type": "proxyString",
+        "title": "Slug"
+      },
+      {
+        "to": [
+          {
+            "type": "colorTheme"
+          }
+        ],
+        "name": "colorTheme",
+        "type": "reference"
+      },
+      {
+        "name": "body",
+        "type": "portableText"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "description": "Product data from Shopify (read-only)",
+        "readOnly": true,
+        "fieldsets": [
+          {
+            "name": "status"
+          },
+          {
+            "name": "organization",
+            "options": {
+              "columns": 2
+            }
+          },
+          {
+            "name": "variants",
+            "options": {
+              "collapsed": true,
+              "collapsible": true
+            }
+          }
+        ],
+        "name": "store",
+        "type": "shopifyProduct"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "product",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "hidden": "conditional",
+        "name": "hidden",
+        "type": "string"
+      },
+      {
+        "options": {
+          "field": "store.title"
+        },
+        "name": "titleProxy",
+        "type": "proxyString",
+        "title": "Title"
+      },
+      {
+        "options": {
+          "collapsed": false,
+          "collapsible": true
+        },
+        "description": "Variant data from Shopify (read-only)",
+        "readOnly": true,
+        "fieldsets": [
+          {
+            "name": "status"
+          },
+          {
+            "name": "options",
+            "options": {
+              "columns": 3
+            }
+          }
+        ],
+        "name": "store",
+        "type": "shopifyProductVariant",
+        "title": "Shopify"
+      }
+    ],
+    "name": "productVariant",
+    "type": "document",
+    "title": "Product variant"
+  }
+]
