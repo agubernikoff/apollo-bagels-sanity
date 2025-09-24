@@ -614,7 +614,7 @@
       },
       {
         "name": "description",
-        "type": "string"
+        "type": "portableTextSimple"
       },
       {
         "options": {
