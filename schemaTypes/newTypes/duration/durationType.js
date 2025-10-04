@@ -12,13 +12,13 @@ export const durationType = defineType({
       name: 'start',
       title: 'Opening Time',
       type: 'string', // Keep as string since `type="time"` outputs string
-      default: '07:00',
+      initialValue: '07:00',
     }),
     defineField({
       name: 'end',
       title: 'Closing Time',
       type: 'string',
-      default: '17:00',
+      initialValue: '17:00',
     }),
   ],
   // make the fields render next to each other

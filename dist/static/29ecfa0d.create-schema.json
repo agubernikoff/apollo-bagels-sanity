@@ -1176,11 +1176,13 @@
     },
     "fields": [
       {
+        "default": "07:00",
         "name": "start",
         "type": "string",
         "title": "Opening Time"
       },
       {
+        "default": "17:00",
         "name": "end",
         "type": "string",
         "title": "Closing Time"
