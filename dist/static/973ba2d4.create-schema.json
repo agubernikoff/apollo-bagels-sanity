@@ -1642,6 +1642,10 @@
   {
     "fields": [
       {
+        "name": "comingSoon",
+        "type": "boolean"
+      },
+      {
         "validation": [
           {
             "rules": [
@@ -1772,8 +1776,8 @@
         "type": "file"
       },
       {
-        "name": "comingSoon",
-        "type": "boolean"
+        "name": "hours",
+        "type": "storeHours"
       }
     ],
     "name": "location",
