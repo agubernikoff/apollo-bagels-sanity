@@ -6,6 +6,7 @@ export const locationType = defineField({
   type: 'document',
   icon: () => '📍',
   fields: [
+    defineField({name: 'comingSoon', type: 'boolean'}),
     defineField({
       name: 'title',
       type: 'string',
@@ -36,6 +37,6 @@ export const locationType = defineField({
     defineField({name: 'cateringLink', type: 'url'}),
     defineField({name: 'googleMapsLink', type: 'url'}),
     defineField({name: 'videoBackground', type: 'file'}),
-    defineField({name: 'comingSoon', type: 'boolean'}),
+    defineField({name: 'hours', type: 'storeHours'}),
   ],
 })

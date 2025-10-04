@@ -64,8 +64,6 @@ export const structure: StructureResolver = (S, context) =>
       S.divider(),
       settings(S, context),
       S.divider(),
-      storeHours(S, context),
-      S.divider(),
       location(S, context),
       S.divider(),
       menu(S, context),

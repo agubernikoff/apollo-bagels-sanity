@@ -1804,6 +1804,14 @@
         "type": "string"
       },
       {
+        "name": "mobileAlternateTitle",
+        "type": "string"
+      },
+      {
+        "name": "mobileSubText",
+        "type": "string"
+      },
+      {
         "name": "price",
         "type": "number"
       },
